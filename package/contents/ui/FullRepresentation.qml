@@ -11,9 +11,6 @@ import "components"
 PlasmaExtras.Representation {
     readonly property var appletInterface: plasmoid.self
 
-    Layout.preferredWidth: PlasmaCore.Units.gridUnit * 24
-    Layout.preferredHeight: PlasmaCore.Units.gridUnit * 24
-
     Loader {
         id: gridLoader
         sourceComponent: gridComponent
