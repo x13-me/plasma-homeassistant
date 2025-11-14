@@ -15,7 +15,7 @@ Kirigami.FormLayout {
         text: item.entity_id
         onEditingFinished: {
             item.entity_id = text
-            item = item
+            itemChanged()
         }
         Autocompletion {
             model: Object.keys(entities).sort()
