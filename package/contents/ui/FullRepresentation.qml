@@ -1,10 +1,12 @@
-import QtQuick 2.0
-import QtQuick.Layouts 1.0
-import QtQuick.Controls 2.5
+import QtQuick
+import QtQuick.Layouts
+import QtQuick.Controls
 
-import org.kde.plasma.core 2.1 as PlasmaCore
-import org.kde.plasma.extras 2.0 as PlasmaExtras
-import org.kde.plasma.components 3.0 as PlasmaComponents3
+import org.kde.plasma.core as PlasmaCore
+import org.kde.plasma.extras as PlasmaExtras
+import org.kde.plasma.components as PlasmaComponents3
+
+import org.kde.kirigami as Kirigami
 
 import "components"
 
@@ -26,31 +28,24 @@ PlasmaExtras.Representation {
                 clip: true
                 readonly property int dynamicColumnNumber: Math.min(Math.max(width / minItemWidth, 1), count)
                 readonly property int dynamicCellWidth: Math.max(width / dynamicColumnNumber, minItemWidth)
-                readonly property int minItemWidth: PlasmaCore.Units.iconSizes.enormous
+                readonly property int minItemWidth: Kirigami.Units.iconSizes.enormous
 
                 cellWidth: dynamicCellWidth
                 cellHeight: minItemWidth / 2
                 model: itemModel
                 delegate: Entity {
-                    id: entity
-                    width: GridView.view.cellWidth - PlasmaCore.Units.smallSpacing
-                    height: GridView.view.cellHeight - PlasmaCore.Units.smallSpacing
+                    width: GridView.view.cellWidth - Kirigami.Units.smallSpacing
+                    height: GridView.view.cellHeight - Kirigami.Units.smallSpacing
+                    contentItem: EntityDelegateTile {}
                 }
             }
         }
     }
 
-    PlasmaComponents3.BusyIndicator {
-        id: busyIndicator
-        running: true
-        visible: plasmoid.busy
-        anchors.centerIn: parent
-    }
-
     StatusIndicator {
         icon: "data-error"
-        size: PlasmaCore.Units.iconSizes.small
-        message: ha && ha.errorString
+        size: Kirigami.Units.iconSizes.small
+        message: ha?.errorString || ''
         anchors {
             bottom: parent.bottom
             right: parent.right
@@ -70,6 +65,18 @@ PlasmaExtras.Representation {
                 text: i18n("Show requirements")
                 onTriggered: Qt.openUrlExternally(`${plasmoid.metaData.website}/tree/v${plasmoid.metaData.version}#requirements`)
             }
+        }
+    }
+
+    Loader {
+        anchors.centerIn: parent
+        active: plasmoid.configurationRequired
+            && (plasmoid.formFactor === PlasmaCore.Types.Vertical
+            || plasmoid.formFactor === PlasmaCore.Types.Horizontal)
+        sourceComponent: PlasmaComponents3.Button {
+            icon.name: "configure"
+            text: i18nd("plasmashellprivateplugin", "Configure…")
+            onClicked: plasmoid.internalAction("configure").trigger()
         }
     }
 }
