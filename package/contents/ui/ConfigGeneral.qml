@@ -41,7 +41,7 @@ KCM.SimpleKCM {
             onModelChanged: currentIndex = indexOfValue(cfg_url)
             onActiveFocusChanged: !activeFocus && setValue(editText)
             onHoveredChanged: !hovered && setValue(editText)
-            onEditTextChanged: editText !== cfg_url && configurationChanged()
+            onAccepted: setValue(editText)
             onActivated: {
                 secrets.restore(editText)
                 setValue(editText)
@@ -61,7 +61,7 @@ KCM.SimpleKCM {
         TextField {
             id: token
             text: secrets.token
-            onTextChanged: text !== secrets.token && configurationChanged()
+            onTextEdited: configurationChanged()
             Kirigami.FormData.label: i18n("Token")
         }
 

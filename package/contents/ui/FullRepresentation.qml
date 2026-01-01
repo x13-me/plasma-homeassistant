@@ -13,9 +13,6 @@ import "components"
 PlasmaExtras.Representation {
     readonly property var appletInterface: plasmoid.self
 
-    Layout.preferredWidth: Kirigami.Units.gridUnit * 24
-    Layout.preferredHeight: Kirigami.Units.gridUnit * 24
-
     Loader {
         id: gridLoader
         sourceComponent: gridComponent
