@@ -1,7 +1,7 @@
 import QtQuick
 
-import "../lib/secrets"
+import "../lib/secrets" as SecretsLib
 
-Secrets { 
+SecretsLib.Secrets { 
     appId: "HomeAssistant"
 }
