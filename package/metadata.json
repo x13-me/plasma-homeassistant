@@ -1,21 +1,23 @@
- 
 {
-    "KPackageStructure": "Plasma/Applet",
-    "KPlugin": {
-        "Authors": [
-            {
-                "Name": "Krzysztof Korab"
-            }
-        ],
-        "Category": "Online Services",
-        "Description": "Home Assistant",
-        "Icon": "go-home-symbolic",
-        "Id": "com.github.korapp.homeassistant",
-        "License": "GPLv3",
-        "Name": "Home Assistant",
-        "Version": "0.1.0",
-        "Website": "https://github.com/korapp/plasma-homeassistant"
-    },
-    "X-Plasma-API-Minimum-Version": "6.0",
-    "X-Plasma-StandAloneApp": true
+  "KPackageStructure": "Plasma/Applet",
+  "KPlugin": {
+    "Authors": [
+      {
+        "Name": "x13.me"
+      },
+      {
+        "Name": "Krzysztof Korab"
+      }
+    ],
+    "Category": "Online Services",
+    "Description": "Home Assistant",
+    "Icon": "go-home-symbolic",
+    "Id": "me.x13.plasma-ha-brightness",
+    "License": "GPLv3",
+    "Name": "Home Assistant",
+    "Version": "0.0.1",
+    "Website": "https://github.com/x13-me/plasma-homeassistant"
+  },
+  "X-Plasma-API-Minimum-Version": "6.0",
+  "X-Plasma-StandAloneApp": true
 }
