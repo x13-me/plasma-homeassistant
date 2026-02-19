@@ -50,7 +50,7 @@ PlasmaComponents3.Button {
                         acceptedDevices: PointerDevice.TouchPad | PointerDevice.Mouse
                         orientation: Qt.Vertical
                         onWheel: e => {
-                            const p = position + e.angleDelta.y / 360
+                            const p = position - e.angleDelta.y / 3600
                             position = p > 1 ? 1 : p < 0 ? 0 : p
                         }
                         onActiveChanged: !active && ha.callService(scroll_action, { [scroll_action.data_field]: position * (max - min) + min })
